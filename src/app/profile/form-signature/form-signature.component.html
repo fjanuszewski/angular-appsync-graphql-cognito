@@ -1,0 +1,95 @@
+<form [formGroup]="employeeForm">
+    <div class="container">
+        <br>
+        <h1>Personal Data:</h1>
+        <hr>
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-group">
+                    <label for="firstName">First Name<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" formControlName="firstName" name="firstName" required>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-group">
+                    <label for="secondName">Second Name</label>
+                    <input type="text" class="form-control" formControlName="secondName" name="secondName">
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-group">
+                    <label for="lastName">Last name<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" formControlName="lastName" name="lastName" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-group">
+                    <label for="position">Position<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" formControlName="position" name="position" required>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-group">
+                    <label for="telephone">Telephone</label>
+                    <input type="text" class="form-control" formControlName="telephone" name="telephone">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" formControlName="email" name="email">
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-group">
+                    <label for="linkedin">Linkedin</label>
+                    <input type="text" class="form-control" formControlName="linkedin" name="linkedin">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row" *ngFor="let cert of employee.certs | sort:'asc':'order'">
+                <div class="col-sm">
+                    <div class="cert" (click)="openModalModifyCertificates(modifyCert, cert)">
+                        <img [src]="cert.img" width="110" alt="" height="110">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-sm text-left">
+                <button (click)="openModalAddCertificates(addCert)" type="button" class="btn btn-primary btn-block">Add
+                    Certificate</button>
+            </div>
+            <div class="col-sm text-left">
+                <button type="submit" class="btn btn-success btn-block" [disabled]="!employeeForm.valid">Save Data</button>
+            </div>
+            <div class="col-sm text-center">
+                <button (click)="openModalPreviewSignature(preview)" type="button" class="btn btn-info btn-block">Preview
+                    Signature</button>
+            </div>
+            <div class="col-sm text-right">
+                <button type="button" class="btn btn-secondary btn-block">Download Signature</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+<ng-template #modifyCert let-modal>
+    <app-form-certificate [cert]="selectedCert" [modalReference]="modalReference"></app-form-certificate>
+</ng-template>
+
+<ng-template #addCert let-modal>
+    <app-add-certificate [employee]="employee" (newCert)="onAddCert($event)" [modalReference]="modalReference">
+    </app-add-certificate>
+</ng-template>
+
+<ng-template #preview let-modal>
+    <app-preview-signature [employee]="employee" [modalReference]="modalReference"></app-preview-signature>
+</ng-template>

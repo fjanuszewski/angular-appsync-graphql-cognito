@@ -1,0 +1,50 @@
+<form [formGroup]="certForm" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="modalReference.close('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <label for="selectCert">Select Certification</label>
+        <select class="form-control" id="selectCert" name="certSelectedId" (ngModelChange)="onChangeSelection($event)"
+            formControlName="id" required>
+            <option [ngValue]="null" selected>Choose...</option>
+            <option *ngFor="let cert of certsAvailable" [value]="cert.id">{{cert.description}}</option>
+        </select>
+        <br>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="cert">
+                        <img [src]="certSelected.img" width="140" alt="" height="140">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="url">URL</label>
+                <input type="text" class="form-control" name="url" formControlName="url" required>
+            </div>
+            <div class="form-group">
+                <label for="selectOrder">Order</label>
+                <select class="form-control" id="selectOrder" name="order"
+                    (ngModelChange)="onChangeSelectionOrder($event)" formControlName="order" required>
+                    <option [ngValue]="null" selected>Choose...</option>
+                    <option *ngFor="let order of orders" [ngValue]="order">{{order}}</option>
+                </select>
+            </div>
+    </div>
+    <div class="modal-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col text-left">
+                    <button type="button" class="btn btn-secondary btn-block"
+                        (click)="modalReference.close('delete')">Close</button>
+                </div>
+                <div class="col text-right">
+                    <button type="submit" class="btn btn-success btn-block" [disabled]="!certForm.valid">Save</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

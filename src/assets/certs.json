@@ -1,0 +1,81 @@
+[{
+        "id": "practitioner",
+        "description":"Cloud Practitioner",
+        "img": "https://images.youracclaim.com/size/220x220/images/1fdcf6a9-de8e-4e35-96b0-e801d8411506/AWS-CloudPractitioner.png",
+        "url": ""
+    },
+    {
+        "id": "saa",
+        "description":"Solutions Architect Associate",
+        "img": "https://images.youracclaim.com/size/220x220/images/6774b3bf-7a82-4d40-a2d1-86b412635bae/AWS-SolArchitect-Associate.png",
+        "url": ""
+    },
+    {
+        "id": "da",
+        "description":"Developer Associate",
+        "img": "https://images.youracclaim.com/size/220x220/images/2a15d440-edbe-44a2-890f-0a0caf7e1442/AWS-Developer-Associate.png",
+        "url": ""
+    },
+    {
+        "id": "soa",
+        "description":"SysOps Admin Associate",
+        "img": "https://images.youracclaim.com/size/220x220/images/ee0a9da0-1627-4031-a455-8ced6b866cc7/AWS-SysOpAdmin-Associate.png",
+        "url": ""
+    },
+    {
+        "id": "dep",
+        "description":"DevOps Engineer Professional",
+        "img": "https://images.youracclaim.com/size/220x220/images/536167dd-c888-44b8-8aad-b7577a8862f3/AWS-DevOpsEngineer-Professional.png",
+        "url": ""
+    },
+    {
+        "id": "sap",
+        "description":"Aolutions Architect Professional",
+        "img": "https://images.youracclaim.com/size/220x220/images/b158bae7-462e-4c2c-92e6-d7a0b4cdb6c6/AWS-SolArchitect-Professional.png",
+        "url": ""
+    },
+    {
+        "id": "ans",
+        "description":"Advanced Networking Speciality",
+        "img": "https://images.youracclaim.com/size/220x220/images/d8ca0c52-8f45-4bf3-87a1-de6455b41bfc/AWS-AdvNetworking-Specialty.png",
+        "url": ""
+    },
+    {
+        "id": "ass",
+        "description":"Alexa Skill Builder Speciality",
+        "img": "https://images.youracclaim.com/size/220x220/images/f3998277-e41b-4d15-a44f-92b73770a541/AWS-AlexaSkillBuilder-Specialty.png",
+        "url": ""
+    },
+    {
+        "id": "bds",
+        "description":"Big Data Speciality",
+        "img": "https://images.youracclaim.com/size/220x220/images/44dedeb6-672c-451e-8158-d81817cfac03/AWS-BigData-Specialty.png",
+        "url": ""
+    },
+    {
+        "id": "das",
+        "description":"Data Analytics Speciality",
+        "img": "https://images.youracclaim.com/size/220x220/images/2763fe4e-54cd-48a3-8c3f-cde4fd54dbed/AWS-DataAnalytics-Specialty.png",
+        "url": ""
+    },
+    {
+        "id": "dbs",
+        "description":"Database Speciality",
+        "img": "https://images.youracclaim.com/size/220x220/images/a9313b95-d960-424d-ab70-5bc23b94eb32/AWS-Database-Specialty.png",
+        "url": ""
+    },
+    {
+        "id": "mls",
+        "description":"Machine Learning Speciality",
+        "img": "https://images.youracclaim.com/size/220x220/images/ae0ef2ee-54b4-40c4-99e3-69ba51d13c4d/AWS-MachineLearning-Specialty.png",
+        "url": ""
+    },
+    {
+        "id": "ss",
+        "description":"Security Speciality",
+        "img": "https://images.youracclaim.com/size/220x220/images/a8f6dbdb-636e-49a4-8d4d-e8fad8d53fa5/AWS-Security-Specialty.png",
+        "url": ""
+    }
+
+
+]

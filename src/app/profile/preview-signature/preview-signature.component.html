@@ -1,0 +1,73 @@
+<div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="modalReference.close('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <br>
+    <br>
+    <table style="color:rgb(0,0,0);font-family:Times">
+        <tbody>
+            <tr>
+                <td>
+                    <a href="https://www.droptek.com/" style="color:rgb(17,85,204);margin-right:15px;margin-left:0px"
+                        target="_blank" data-saferedirecturl="https://www.droptek.com">
+                        <!-- TODO CAMBIAR URL DEL LOGO -->
+                        <img src="https://ci4.googleusercontent.com/proxy/qcrvwdmp5ZFoeI9XTT8-uYso869ZzVxj0__PwzBbOb4QUDLM_sC0gKRVeldKXgF6tL3_6igaYGv_2mcK8P7MzshqHZdmXkw=s0-d-e1-ft#http://www.jordiux.com/devs/droptek/logo-droptek.png"
+                            alt="droptek" width="110px" class="CToWUd"></a></td>
+                <td
+                    style="border-left-width:1px;border-left-style:solid;border-left-color:rgb(162,223,255);padding-left:10px">
+                    <p style="margin-top:5px;margin-bottom:0px">
+                        <span
+                            style="font-family:Helvetica,sans-serif;font-size:15px;color:rgb(25,119,204);margin:30px 10px 5px 5px">{{employee.firstName}}
+                            {{employee.secondName}} {{employee.lastName}}</span>
+                    </p>
+                    <p
+                        style="font-family:Helvetica,sans-serif;font-size:13px;color:rgb(57,153,221);margin-left:5px;margin-top:5px;margin-bottom:5px">
+                        {{employee.position}}<br></p>
+                    <div>
+                        <nav><a *ngFor="let cert of employee.Certifications" [href]="cert.url">
+                                <img [src]="cert.img" alt="cert.id" width="60" height="60" style="margin-right:-7px"
+                                    data-image-whitelisted="" class="CToWUd"></a>
+                        </nav>
+
+                        <p
+                            style="font-family:Helvetica,sans-serif;font-size:9px;color:rgb(57,153,221);margin-left:5px;margin-top:0px">
+                            <br></p>
+                        <p
+                            style="font-family:Helvetica,sans-serif;font-size:11px;color:rgb(74,74,74);margin-left:5px;margin-top:0px">
+                            <strong style="color:rgb(57,153,221)">TEL.</strong>&nbsp;{{employee.telephone}}</p>
+                        <p
+                            style="font-family:Helvetica,sans-serif;font-size:11px;color:rgb(74,74,74);margin-left:5px;margin-top:0px">
+                            <a [href]="'mailto:'+employee.email"
+                                style="font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;color:rgb(17,85,204)"
+                                target="_blank">
+                                <!-- TODO CAMBIAR URL DE IMAGEN -->
+                                <img src="https://ci5.googleusercontent.com/proxy/W20TfX5B6iZm4wuWQilaL7qAWsKnduhMFTnhz9qnZW3xePRvRvOsYUQZlTl3-v0MEQ5hSZx6C_5ZQ8g5jz6g=s0-d-e1-ft#http://www.jordiux.com/devs/droptek/Mail.png"
+                                    alt="" width="25" class="CToWUd"></a><span
+                                style="font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;color:rgb(0,0,0);font-size:small">&nbsp;</span><a
+                                [href]="'https://api.whatsapp.com/send?phone='+employee.telephone"
+                                style="font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;color:rgb(17,85,204)"
+                                target="_blank">
+                                <!-- TODO CAMBIAR URL DE IMAGEN -->
+                                <img src="https://ci6.googleusercontent.com/proxy/BTo1ufoJ4qlA_1dzZyVD6vrLCGQLTU85PNjn99TdDLSBuLYiJSkCIlfwM4gHLfhnn6W7Y4GWG1n4Pmmx-0WXKA=s0-d-e1-ft#http://www.jordiux.com/devs/droptek/Phone.png"
+                                    alt="" width="25" class="CToWUd"></a><span
+                                style="font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;color:rgb(0,0,0);font-size:small">&nbsp;</span><a
+                                [href]="employee.linkedin"
+                                style="font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;color:rgb(17,85,204)"
+                                target="_blank">
+                                <!-- TODO CAMBIAR URL DE IMAGEN -->
+                                <img src="https://ci4.googleusercontent.com/proxy/ZQex_sYQXYELLPQkDvk65bGI869VsQBMzD6XFZlvU-OYXAk19hcoJ1Cnhx-8F3zSjaYHMtCcjxxa6Flu3izSCMBzuQ=s0-d-e1-ft#http://www.jordiux.com/devs/droptek/Linkedin.png"
+                                    alt="" width="25" class="CToWUd"></a></p>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p style="margin-top:5px;margin-bottom:5px;margin-left:10px">
+        <!-- TODO CAMBIAR URL DE IMAGEN -->
+        <img src="https://ci4.googleusercontent.com/proxy/t8MynOVqhA1LNW5AvRvH_b9i4AHu1x2Rj4JwKVGEh3foS3Ad2hvsndqoYcn9y8Y1a7ZIiIxCLkLR17YM1gXigA=s0-d-e1-ft#http://www.jordiux.com/devs/droptek/Leave.png"
+            alt="" width="13" class="CToWUd"><span
+            style="font-family:Helvetica,sans-serif;font-size:11px;color:rgb(74,74,74);margin-top:30px;margin-left:5px;margin-right:10px">No
+            imprimas, salvá un árbol.</span></p>
+</div>

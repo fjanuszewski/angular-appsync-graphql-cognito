@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - npm update
+      - npm i @angular/cli
+  build:
+    commands:
+      - sam build  -t template.yaml
+      - sam package   --template-file .aws-sam/build/template.yaml --s3-bucket $S3_BUCKET --output-template-file template-export.yaml
+      - npm run build --prod
+
+artifacts:
+  secondary-artifacts:
+    BuildArtifact: 
+      files:
+        - '**/**'
+      name: 'serverlesswebDistArtifact'
+      base-directory: 'dist'
+      discard-paths: yes
+    TemplateArtifact:
+       files:
+        - template-export.yaml

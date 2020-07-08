@@ -1,0 +1,42 @@
+<form [formGroup]="certForm">
+    <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="modalReference.close('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="cert">
+                    <img [src]="cert.img" width="140" alt="" height="140">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="url">URL</label>
+            <input type="text" class="form-control" name="url" formControlName="url" required>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Order</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="order"
+                (ngModelChange)="onChangeSelection($event)" formControlName="order" required>
+                <option *ngFor="let order of orders" [ngValue]="order">{{order}}</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col text-left">
+                    <button type="button" class="btn btn-danger btn-block"
+                        (click)="modalReference.close('delete')">Delete</button>
+                </div>
+                <div class="col text-right">
+                    <button type="button" class="btn btn-success btn-block" (click)="modalReference.close('save')"
+                        [disabled]="!certForm.valid">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

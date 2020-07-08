@@ -1,0 +1,30 @@
+{
+    "firstName": "Fabián",
+    "secondName": "L.",
+    "lastName": "Januszewski",
+    "telephone": "+54 911 3210 3562",
+    "email": "fabianj@droptek.com",
+    "position": "CTO",
+    "certURL":"https://www.youracclaim.com/users/fabian-januszewski/badges",
+    "linkedin":"https://www.linkedin.com/in/fabián-leonar-januszewski-96326659/",
+    "avatar":"https://images.youracclaim.com/size/680x680/images/ad1d5836-7131-4890-b86f-334b490b6a3c/blob.jpeg",
+    "certs": [{
+            "id": "practitioner",
+            "img": "https://images.youracclaim.com/size/220x220/images/1fdcf6a9-de8e-4e35-96b0-e801d8411506/AWS-CloudPractitioner.png",
+            "url": "asdasd",
+            "order": 1
+        },
+        {
+            "id": "saa",
+            "img": "https://images.youracclaim.com/size/220x220/images/6774b3bf-7a82-4d40-a2d1-86b412635bae/AWS-SolArchitect-Associate.png",
+            "url": "https://www.youracclaim.com/badges/fd488c68-4009-41cb-8a56-37d916b3e6af/linked_in_profile",
+            "order": 2
+        },
+        {
+            "id": "soa",
+            "img": "https://images.youracclaim.com/size/220x220/images/ee0a9da0-1627-4031-a455-8ced6b866cc7/AWS-SysOpAdmin-Associate.png",
+            "url": "",
+            "order": 3
+        }
+    ]
+}
