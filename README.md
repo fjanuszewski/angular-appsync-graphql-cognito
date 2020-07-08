@@ -28,7 +28,7 @@ You can either implement the tamplate with your favorite SAM command, or run the
 
 ### Environments in aws-exports
 The file is stored in **src/aws-exports/aws-exports.js**
-```json
+```js
 const awsmobile = {
     "aws_project_region": "us-east-1",
     "aws_cognito_identity_pool_id": "us-east-1:XXXXXX",
