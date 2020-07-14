@@ -25,6 +25,10 @@ You can either implement the tamplate with your favorite SAM command, or run the
 - **BUCKET**: Bucket is required for [SAM Package](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-package.html)
 - **STACK**: Name of stack in CloudFormation, is reference for the name of objects in template
 - **PROJECT**: Tag for all resources
+- **DOMAIN**: Domain for Route53
+- **SUBDOMAIN**: SubDomain for Route53
+- **CERTARN**: SSL Cert ARN for CloudFront
+- **AWS_PROFILE**: Profile for AWS CLI
 
 ### Environments in aws-exports
 The file is stored in **src/aws-exports/aws-exports.js**
