@@ -1,3 +1,9 @@
 ./node_modules
 *node_modules*
 node_modules
+deploy_local.sh
+packaged-template.yaml
+.aws-sam
+aws-exports.js
+dist
+src/aws-exports/aws-exports.js

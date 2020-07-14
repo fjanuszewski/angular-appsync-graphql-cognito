@@ -3,7 +3,15 @@ Transform:
 - AWS::Serverless-2016-10-31
 
 Description: 'Template of infraestructure for serverless web demo'
-    
+
+Parameters:
+  CertArn:
+    Type: String
+  Domain:
+    Type: String
+  SubDomain:
+    Type: String
+
 Resources:
 
   SiteBucket:
@@ -14,40 +22,92 @@ Resources:
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: error.html
-        
-  CloudFrontDistribution:
+
+  SiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: 
+        Ref: 'SiteBucket'
+      PolicyDocument:
+        Statement:
+          - Sid: PublicReadForGetBucketObjects
+            Effect: Allow
+            Principal: '*'
+            Action: s3:GetObject
+            Resource:
+              Fn::Join: ['', ['arn:aws:s3:::', Ref: 'SiteBucket', /*]]
+
+  CloudFrontDistribution: 
+    DependsOn:
+    - SiteBucket
     Type: AWS::CloudFront::Distribution
     Properties:
       DistributionConfig:
+        CustomErrorResponses:
+          - ErrorCode: 403 # not found
+            ResponseCode: 404
+            ResponsePagePath: '/index.html'
         Origins:
           - DomainName: 
               Fn::GetAtt: SiteBucket.DomainName
-            Id: myS3Origin
+            Id: s3origin
             S3OriginConfig:
               OriginAccessIdentity:
                 Fn::Sub: "origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}"
+        PriceClass: 'PriceClass_All'
         Enabled: "true"
         Comment: 
           Fn::Join: [".", [Ref: AWS::StackName, "Distribution"]]
-        DefaultRootObject: index.html
-        HttpVersion: http2
+        DefaultRootObject: '/index.html'
+        HttpVersion: http2        
+        Aliases:
+          - Fn::Join: [".", [Ref: SubDomain, Ref: Domain]]
+        ViewerCertificate:
+          AcmCertificateArn: 
+            Ref: CertArn
+          SslSupportMethod: sni-only
         DefaultCacheBehavior:
-          Compress: True
           AllowedMethods:
             - GET
             - HEAD
             - OPTIONS
-          TargetOriginId: myS3Origin
+          CachedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+          Compress: true
+          DefaultTTL: 3600 # in seconds
           ForwardedValues:
-            QueryString: "false"
             Cookies:
               Forward: none
-          ViewerProtocolPolicy: redirect-to-https
+            QueryString: false
+          MaxTTL: 86400 # in seconds
+          MinTTL: 60 # in seconds
+          TargetOriginId: s3origin
+          ViewerProtocolPolicy: 'redirect-to-https'
+
   CloudFrontOriginAccessIdentity:
     Type: "AWS::CloudFront::CloudFrontOriginAccessIdentity"
     Properties:
       CloudFrontOriginAccessIdentityConfig:
-        Comment: "Identity to access site for surftc.comercios.co"
+        Comment: 
+          Fn::Sub: "Identity to access site for ${AWS::StackName}"
+
+
+
+  SiteHost:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneName: 
+        Fn::Sub: "${Domain}."
+      Comment:
+        Fn::Sub: "Domain for ${AWS::StackName}"
+      Name:
+        Fn::Join: [".", [Ref: SubDomain, Ref: Domain]]
+      Type: CNAME
+      TTL: "900"
+      ResourceRecords:
+        - Fn::GetAtt: CloudFrontDistribution.DomainName
 Outputs:
   CloudFrontDistributionOutput:
     Description: CloudFront Distribution
