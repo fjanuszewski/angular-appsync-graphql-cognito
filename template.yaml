@@ -30,12 +30,14 @@ Resources:
         Ref: 'SiteBucket'
       PolicyDocument:
         Statement:
-          - Sid: PublicReadForGetBucketObjects
+          - Sid: PublicForCloudFront
             Effect: Allow
-            Principal: '*'
+            Principal:
+              CanonicalUser:
+                Fn::GetAtt: [ CloudFrontOriginAccessIdentity , S3CanonicalUserId ]
             Action: s3:GetObject
             Resource:
-              Fn::Join: ['', ['arn:aws:s3:::', Ref: 'SiteBucket', /*]]
+              Fn::Sub: "${SiteBucket.Arn}/*"
 
   CloudFrontDistribution: 
     DependsOn:
@@ -97,11 +99,14 @@ Resources:
     Type: AWS::Route53::RecordSet
     Properties:
       AliasTarget:
+        #Required in SUB for string format
         DNSName: 
-          Fn::Sub: "${CloudFrontDistribution.DomainName}" #Required in SUB for string format
-        HostedZoneId: Z2FDTNDATAQYW2 #This value is required for CloudFormation https://docs.aws.amazon.com/es_es/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html
+          Fn::Sub: ${CloudFrontDistribution.DomainName}
+        #This value is required for CloudFormation https://docs.aws.amazon.com/es_es/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html
+        HostedZoneId: Z2FDTNDATAQYW2
+      #The dot in the end if required for hosted zone
       HostedZoneName: 
-        Fn::Sub: "${Domain}." #The dot in the end if required for hosted zone
+        Fn::Sub: "${Domain}." 
       Comment:
         Fn::Sub: "Domain for ${AWS::StackName}"
       Name:
