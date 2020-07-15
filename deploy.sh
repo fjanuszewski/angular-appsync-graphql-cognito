@@ -17,34 +17,36 @@ PROJECT=XXXXXX #PROJECT NAME FOR THE TAGS
 AWS_PROFILE=XXXX
 
 echo "${YELLOW} Validating local SAM Template..."
-echo " ================================${NC}"
+echo " ================================================= ${NC}"
 sam validate --profile $AWS_PROFILE --template "template.yaml"
 
-echo "${YELLOW} Building SAM package and uploading cloudformation"
+echo "${YELLOW} Package"
 echo " ================================================= ${NC}"
-
 sam package --profile $AWS_PROFILE --template-file ./template.yaml --output-template-file packaged-template.yaml --s3-bucket $BUCKET
-sam deploy --profile $AWS_PROFILE --template-file packaged-template.yaml --stack-name $STACK --tags Project=$PROJECT --parameter-overrides CertArn=$CERTARN ProjectId=$PROJECT Domain=$DOMAIN SubDomain=$SUBDOMAIN --capabilities CAPABILITY_NAMED_IAM
+
+echo "${YELLOW} Deploy"
+echo " ================================================= ${NC}"
+sam deploy --profile $AWS_PROFILE --region us-east-1 --template-file packaged-template.yaml --stack-name $STACK --tags Project=$PROJECT --parameter-overrides CertArn=$CERTARN ProjectId=$PROJECT Domain=$DOMAIN SubDomain=$SUBDOMAIN --capabilities CAPABILITY_NAMED_IAM
 
 
 echo "${YELLOW} Building frontend"
-echo " =================${NC}"
+echo " ================================================= ${NC}"
 npm install
 ng build --prod --aot --vendor-chunk --common-chunk --delete-output-path --buildOptimizer
 
 echo "${YELLOW} Desrcibe Stack"
-echo " ===============${NC}"
+echo " ================================================= ${NC}"
 
 CLOUDFRONT_DISTRIBUTION=`aws cloudformation describe-stacks --profile $AWS_PROFILE --stack-name "$STACK" --output text | grep $STACK-PortalDistribution | awk -F"\t" '{$0=$5}6'`
 # Deploy to AWS S3
 
-echo "${YELLOW} Deploy to S3 FE"
-echo " ===============${NC}"
+echo "${YELLOW} Push to S3 dist"
+echo " ================================================= ${NC}"
 
 aws s3 sync dist/ s3://$STACK/  --acl public-read --profile $AWS_PROFILE
 # This is to set the index cache to 1 hour so when there are updates they don't take to long to reach all users
 aws s3 sync dist/index.html s3://$STACK/  --acl public-read --profile $AWS_PROFILE --cache-control max-age=3600
 
-echo "${YELLOW} Creating Invalidation "
-echo " ===================== ${NC}"
+echo "${YELLOW} Creating Invalidation"
+echo " ================================================= ${NC}"
 aws cloudfront create-invalidation --profile $AWS_PROFILE --distribution-id $CLOUDFRONT_DISTRIBUTION --path "/*"
