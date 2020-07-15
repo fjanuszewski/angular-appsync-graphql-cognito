@@ -93,21 +93,21 @@ Resources:
         Comment: 
           Fn::Sub: "Identity to access site for ${AWS::StackName}"
 
-
-
   SiteHost:
     Type: AWS::Route53::RecordSet
     Properties:
+      AliasTarget:
+        DNSName: 
+          Fn::Sub: "${CloudFrontDistribution.DomainName}" #Required in SUB for string format
+        HostedZoneId: Z2FDTNDATAQYW2 #This value is required for CloudFormation https://docs.aws.amazon.com/es_es/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html
       HostedZoneName: 
-        Fn::Sub: "${Domain}."
+        Fn::Sub: "${Domain}." #The dot in the end if required for hosted zone
       Comment:
         Fn::Sub: "Domain for ${AWS::StackName}"
       Name:
         Fn::Join: [".", [Ref: SubDomain, Ref: Domain]]
       Type: CNAME
-      TTL: "900"
-      ResourceRecords:
-        - Fn::GetAtt: CloudFrontDistribution.DomainName
+
 Outputs:
   CloudFrontDistributionOutput:
     Description: CloudFront Distribution
