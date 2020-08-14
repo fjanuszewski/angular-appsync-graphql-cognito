@@ -17,8 +17,8 @@ Resources:
   SiteBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: 
-        Fn::Sub: "${AWS::StackName}"
+      BucketName:
+        Fn::Join: [".", [Ref: SubDomain, Ref: Domain]]
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: error.html
