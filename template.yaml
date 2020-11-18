@@ -111,7 +111,7 @@ Resources:
         Fn::Sub: "Domain for ${AWS::StackName}"
       Name:
         Fn::Join: [".", [Ref: SubDomain, Ref: Domain]]
-      Type: CNAME
+      Type: A
 
 Outputs:
   CloudFrontDistributionOutput:
